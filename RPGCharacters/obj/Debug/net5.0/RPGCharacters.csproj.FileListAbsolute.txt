@@ -1,0 +1,16 @@
+C:\Backend\Assign1\backend\RPGCharacters\bin\Debug\net5.0\RPGCharacters.exe
+C:\Backend\Assign1\backend\RPGCharacters\bin\Debug\net5.0\RPGCharacters.deps.json
+C:\Backend\Assign1\backend\RPGCharacters\bin\Debug\net5.0\RPGCharacters.runtimeconfig.json
+C:\Backend\Assign1\backend\RPGCharacters\bin\Debug\net5.0\RPGCharacters.runtimeconfig.dev.json
+C:\Backend\Assign1\backend\RPGCharacters\bin\Debug\net5.0\RPGCharacters.dll
+C:\Backend\Assign1\backend\RPGCharacters\bin\Debug\net5.0\ref\RPGCharacters.dll
+C:\Backend\Assign1\backend\RPGCharacters\bin\Debug\net5.0\RPGCharacters.pdb
+C:\Backend\Assign1\backend\RPGCharacters\obj\Debug\net5.0\RPGCharacters.csproj.AssemblyReference.cache
+C:\Backend\Assign1\backend\RPGCharacters\obj\Debug\net5.0\RPGCharacters.GeneratedMSBuildEditorConfig.editorconfig
+C:\Backend\Assign1\backend\RPGCharacters\obj\Debug\net5.0\RPGCharacters.AssemblyInfoInputs.cache
+C:\Backend\Assign1\backend\RPGCharacters\obj\Debug\net5.0\RPGCharacters.AssemblyInfo.cs
+C:\Backend\Assign1\backend\RPGCharacters\obj\Debug\net5.0\RPGCharacters.csproj.CoreCompileInputs.cache
+C:\Backend\Assign1\backend\RPGCharacters\obj\Debug\net5.0\RPGCharacters.dll
+C:\Backend\Assign1\backend\RPGCharacters\obj\Debug\net5.0\ref\RPGCharacters.dll
+C:\Backend\Assign1\backend\RPGCharacters\obj\Debug\net5.0\RPGCharacters.pdb
+C:\Backend\Assign1\backend\RPGCharacters\obj\Debug\net5.0\RPGCharacters.genruntimeconfig.cache
