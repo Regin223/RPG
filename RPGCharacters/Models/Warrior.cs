@@ -67,10 +67,12 @@ namespace RPGCharacters.Models
                         if (this.Inventory.ContainsKey(armor.Slot))
                         {
                             this.Inventory[armor.Slot] = armor;
+                            this.TotalPrimaryAttributes += armor.Armourattributes;
                         }
                         else
                         {
                             this.Inventory.Add(armor.Slot, armor);
+                            this.TotalPrimaryAttributes += armor.Armourattributes;
                         }
                     }
                     else

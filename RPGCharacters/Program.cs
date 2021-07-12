@@ -36,15 +36,16 @@ namespace RPGCharacters
                 Rogue rougeObj1 = new Rogue("Rogue1");
                 Console.WriteLine(rougeObj1.BasePrimaryAttributes.Vitality);
                 Console.WriteLine(rougeObj1.SecondarAttributes.ArmorRating);
-                rougeObj1.LevelUp(2);
+                
                 Console.WriteLine("-------------");
-                Console.WriteLine(rougeObj1.BasePrimaryAttributes.Vitality);
+                Console.WriteLine($"TotalPrimaryAttributes, Dexterity: {rougeObj1.TotalPrimaryAttributes.Dexterity}");
+                Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
                 Console.WriteLine(rougeObj1.SecondarAttributes.ArmorRating);
 
                 Weapon w1 = new Weapon
                 {
                     Name = "Big Sword",
-                    RequiredLevel = 3,
+                    RequiredLevel = 1,
                     Slot = Slot.Weapon,
                     Type = WeaponType.Sword,
                     WeaponAttributes = new WeaponAttributes { Damage = 3, AttackSpeed = 0.7 }
@@ -59,8 +60,10 @@ namespace RPGCharacters
                     Type = ArmorType.Mail,
                     Armourattributes = new PrimaryAttributes { Dexterity = 4, Intelligence = 2 }
                 };
-
                 rougeObj1.Equip(armor2);
+                Console.WriteLine($"TotalPrimaryAttributes, Dexterity: {rougeObj1.TotalPrimaryAttributes.Dexterity}");
+                Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
+                
                 rougeObj1.Equip(w1);
             }
             catch (Exception ex)

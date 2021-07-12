@@ -14,7 +14,8 @@ namespace RPGCharacters.Models
             this.Name = name;
             this.Level = 1;
             this.BasePrimaryAttributes = new PrimaryAttributes { Vitality = 8, Strength = 2, Dexterity = 6, Intelligence = 1 };
-            
+            this.TotalPrimaryAttributes = new PrimaryAttributes { Vitality = 8, Strength = 2, Dexterity = 6, Intelligence = 1 };
+
             this.SecondarAttributes = new SecondarAttributes
             {
                 Health = this.BasePrimaryAttributes.Vitality * 10,
@@ -69,10 +70,12 @@ namespace RPGCharacters.Models
                         if (this.Inventory.ContainsKey(armor.Slot))
                         {
                             this.Inventory[armor.Slot] = armor;
+                            this.TotalPrimaryAttributes += armor.Armourattributes;
                         }
                         else
                         {
                             this.Inventory.Add(armor.Slot, armor);
+                            this.TotalPrimaryAttributes += armor.Armourattributes;
                         }
 
                     }

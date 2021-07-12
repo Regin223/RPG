@@ -8,14 +8,14 @@ namespace RPGCharacters.Models
 {
     class PrimaryAttributes
     {
-        public static PrimaryAttributes operator +(PrimaryAttributes one, PrimaryAttributes two)
+        public static PrimaryAttributes operator +(PrimaryAttributes lhs, PrimaryAttributes rhs)
         {
             return new PrimaryAttributes
             {
-                Strength = one.Strength + two.Strength,
-                Dexterity = one.Dexterity + two.Dexterity,
-                Intelligence = one.Intelligence + two.Intelligence,
-                Vitality = one.Vitality + two.Vitality
+                Strength = lhs.Strength + rhs.Strength,
+                Dexterity = lhs.Dexterity + rhs.Dexterity,
+                Intelligence = lhs.Intelligence + rhs.Intelligence,
+                Vitality = lhs.Vitality + rhs.Vitality
             };
         }
         public int Strength { get; set; }
