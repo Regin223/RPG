@@ -20,6 +20,11 @@ namespace RPGCharacters.Models
 
         public Dictionary<Slot, Item> Inventory { get; set; } = new Dictionary<Slot, Item>();
 
+        public bool CheckRequiredLevel(Item item, int level)
+        {
+            return level >= item.RequiredLevel;
+        }
+
 
 
         //Methods

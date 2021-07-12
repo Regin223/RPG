@@ -25,55 +25,72 @@ namespace RPGCharacters.Models
 
         public override void Equip(Weapon weapon)
         {
-            if((weapon.Type == WeaponType.Dagger || weapon.Type == WeaponType.Sword) && weapon.RequiredLevel <= this.Level)
+            if (CheckRequiredLevel(weapon, this.Level))
             {
-                if(weapon.Slot == Slot.Weapon)
+                if ((weapon.Type == WeaponType.Dagger || weapon.Type == WeaponType.Sword) && weapon.RequiredLevel <= this.Level)
                 {
-                    if (this.Inventory.ContainsKey(weapon.Slot))
+                    if (weapon.Slot == Slot.Weapon)
                     {
-                        this.Inventory[weapon.Slot] = weapon;
+                        if (this.Inventory.ContainsKey(weapon.Slot))
+                        {
+                            this.Inventory[weapon.Slot] = weapon;
+                        }
+                        else
+                        {
+                            this.Inventory.Add(Slot.Weapon, weapon);
+                        }
                     }
                     else
                     {
-                        this.Inventory.Add(Slot.Weapon, weapon);
+                        throw new InvalidSlotException();
                     }
                 }
                 else
                 {
-                    throw new InvalidSlotException();
+                    throw new InvalidWeaponException();
                 }
             }
             else
             {
                 throw new InvalidWeaponException();
             }
+            
+           
         }
 
         public override void Equip(Armor armor)
         {
-            if (armor.Type == ArmorType.Leather || armor.Type == ArmorType.Mail)
+            if(CheckRequiredLevel(armor, this.Level))
             {
-                if(armor.Slot == Slot.Head || armor.Slot == Slot.Body || armor.Slot == Slot.Legs)
+                if (armor.Type == ArmorType.Leather || armor.Type == ArmorType.Mail)
                 {
-                    if (this.Inventory.ContainsKey(armor.Slot))
+                    if (armor.Slot == Slot.Head || armor.Slot == Slot.Body || armor.Slot == Slot.Legs)
                     {
-                        this.Inventory[armor.Slot] = armor;
+                        if (this.Inventory.ContainsKey(armor.Slot))
+                        {
+                            this.Inventory[armor.Slot] = armor;
+                        }
+                        else
+                        {
+                            this.Inventory.Add(armor.Slot, armor);
+                        }
+
                     }
                     else
                     {
-                        this.Inventory.Add(armor.Slot, armor);
+                        throw new InvalidSlotException();
                     }
-                        
                 }
                 else
                 {
-                    throw new InvalidSlotException();
+                    throw new InvalidArmorException();
                 }
             }
             else
             {
                 throw new InvalidArmorException();
             }
+           
         }
 
         public override void LevelUp(int levels)
