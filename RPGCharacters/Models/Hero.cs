@@ -18,11 +18,19 @@ namespace RPGCharacters.Models
 
         public SecondarAttributes SecondarAttributes { get; set; }
 
+        public Dictionary<Slot, Item> Inventory { get; set; } = new Dictionary<Slot, Item>();
+
 
 
         //Methods
 
         public abstract void LevelUp(int levels);
+
+        public abstract void Equip(Weapon weapon);
+
+        public abstract void Equip(Armor armor);
+
+       
 
     }
 }

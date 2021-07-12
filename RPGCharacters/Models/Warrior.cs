@@ -21,6 +21,58 @@ namespace RPGCharacters.Models
             };
         }
 
+        public override void Equip(Weapon weapon)
+        {
+            if (weapon.Type == WeaponType.Axe || weapon.Type == WeaponType.Hammer || weapon.Type == WeaponType.Sword)
+            {
+                if (weapon.Slot == Slot.Weapon)
+                {
+                    if (this.Inventory.ContainsKey(weapon.Slot))
+                    {
+                        this.Inventory[weapon.Slot] = weapon;
+                    }
+                    else
+                    {
+                        this.Inventory.Add(Slot.Weapon, weapon);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Throw exeption, can not add weapon to {weapon.Slot}, slot must = Weapon");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Throw not vaild weapon");
+            }
+        }
+
+        public override void Equip(Armor armor)
+        {
+            if (armor.Type == ArmorType.Mail || armor.Type == ArmorType.Plate)
+            {
+                if (armor.Slot == Slot.Head || armor.Slot == Slot.Body || armor.Slot == Slot.Legs)
+                {
+                    if (this.Inventory.ContainsKey(armor.Slot))
+                    {
+                        this.Inventory[armor.Slot] = armor;
+                    }
+                    else
+                    {
+                        this.Inventory.Add(armor.Slot, armor);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Throw exeption, can not add armor to {armor.Slot}, slot must = Head, body or legs");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Throw not valid armor");
+            }
+        }
+
         public override void LevelUp(int levels)
         {
             this.Level += levels; // add exeeption for adding invalid level
