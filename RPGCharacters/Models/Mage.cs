@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RPGCharacters.Exceptions;
 
 namespace RPGCharacters.Models
 {
@@ -38,12 +39,12 @@ namespace RPGCharacters.Models
                 }
                 else
                 {
-                    Console.WriteLine($"Throw exeption, can not add weapon to {weapon.Slot}, slot must = Weapon");
+                    throw new InvalidSlotException();
                 }
             }
             else
             {
-                Console.WriteLine("Throw not vaild weapon");
+                throw new InvalidWeaponException();
             }
         }
 
@@ -64,29 +65,37 @@ namespace RPGCharacters.Models
                 }
                 else
                 {
-                    Console.WriteLine($"Throw exeption, can not add armor to {armor.Slot}, slot must = Head, body or legs");
+                    throw new InvalidSlotException();
                 }
             }
             else
             {
-                Console.WriteLine("Throw not valid armor");
+                throw new InvalidArmorException();
             }
         }
 
         public override void LevelUp(int levels)
         {
-            this.Level += levels; // add exeeption for adding invalid level
-            this.BasePrimaryAttributes.Vitality += levels * 3;
-            this.BasePrimaryAttributes.Strength += levels * 1;
-            this.BasePrimaryAttributes.Dexterity += levels * 1;
-            this.BasePrimaryAttributes.Intelligence += levels * 5;
-            // add for armor aswell 
-            this.SecondarAttributes = new SecondarAttributes
+            if(levels > 0)
             {
-                Health = this.BasePrimaryAttributes.Vitality * 10,
-                ArmorRating = this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity,
-                ElementalResistance = this.BasePrimaryAttributes.Intelligence,
-            };
+                this.Level += levels; // add exeeption for adding invalid level
+                this.BasePrimaryAttributes.Vitality += levels * 3;
+                this.BasePrimaryAttributes.Strength += levels * 1;
+                this.BasePrimaryAttributes.Dexterity += levels * 1;
+                this.BasePrimaryAttributes.Intelligence += levels * 5;
+                // add for armor aswell 
+                this.SecondarAttributes = new SecondarAttributes
+                {
+                    Health = this.BasePrimaryAttributes.Vitality * 10,
+                    ArmorRating = this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity,
+                    ElementalResistance = this.BasePrimaryAttributes.Intelligence,
+                };
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+           
              
         }
     
