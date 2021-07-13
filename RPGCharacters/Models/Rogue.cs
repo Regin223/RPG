@@ -13,6 +13,7 @@ namespace RPGCharacters.Models
         {
             this.Name = name;
             this.Level = 1;
+            this.CharacterDPS = 1;
             this.BasePrimaryAttributes = new PrimaryAttributes { Vitality = 8, Strength = 2, Dexterity = 6, Intelligence = 1 };
             this.TotalPrimaryAttributes = new PrimaryAttributes { Vitality = 8, Strength = 2, Dexterity = 6, Intelligence = 1 };
 
@@ -35,10 +36,12 @@ namespace RPGCharacters.Models
                         if (this.Inventory.ContainsKey(weapon.Slot))
                         {
                             this.Inventory[weapon.Slot] = weapon;
+                            this.SetCharacterDPS();
                         }
                         else
                         {
                             this.Inventory.Add(Slot.Weapon, weapon);
+                            this.SetCharacterDPS();
                         }
                     }
                     else
@@ -96,7 +99,7 @@ namespace RPGCharacters.Models
            
         }
 
-        public override double GetCharacterDPS()
+        public override double SetCharacterDPS()
         {
             double characterDPS;
             if (this.Inventory.ContainsKey(Slot.Weapon))
@@ -104,6 +107,7 @@ namespace RPGCharacters.Models
                 Weapon weapon = (Weapon)this.Inventory[Slot.Weapon];
                 double additionalDamage = 1 + (double)(this.TotalPrimaryAttributes.Dexterity / 100);
                 characterDPS = weapon.GetWeaponDPS() * additionalDamage;
+                this.CharacterDPS = characterDPS;
                 return characterDPS;
             }
             else
@@ -116,7 +120,7 @@ namespace RPGCharacters.Models
         {
             if (levels > 0)
             {
-                this.Level += levels; // add exeeption for adding invalid level
+                this.Level += levels; 
                 this.BasePrimaryAttributes.Vitality += levels * 3;
                 this.BasePrimaryAttributes.Strength += levels * 1;
                 this.BasePrimaryAttributes.Dexterity += levels * 4;

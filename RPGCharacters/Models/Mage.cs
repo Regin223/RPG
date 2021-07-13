@@ -13,6 +13,7 @@ namespace RPGCharacters.Models
         {
             this.Name = name;
             this.Level = 1;
+            this.CharacterDPS = 1;
             this.BasePrimaryAttributes = new PrimaryAttributes { Vitality = 5, Strength = 1, Dexterity = 1, Intelligence = 8 };
             this.SecondarAttributes = new SecondarAttributes 
             {
@@ -33,10 +34,12 @@ namespace RPGCharacters.Models
                         if (this.Inventory.ContainsKey(weapon.Slot))
                         {
                             this.Inventory[weapon.Slot] = weapon;
+                            this.SetCharacterDPS();
                         }
                         else
                         {
                             this.Inventory.Add(Slot.Weapon, weapon);
+                            this.SetCharacterDPS();
                         }
                     }
                     else
@@ -92,7 +95,7 @@ namespace RPGCharacters.Models
           
         }
 
-        public override double GetCharacterDPS()
+        public override double SetCharacterDPS()
         {
             double characterDPS;
             if (this.Inventory.ContainsKey(Slot.Weapon))

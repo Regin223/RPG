@@ -60,12 +60,16 @@ namespace RPGCharacters
                     Type = ArmorType.Mail,
                     Armourattributes = new PrimaryAttributes { Dexterity = 4, Intelligence = 2 }
                 };
+                Console.WriteLine(rougeObj1.ToString());
+                rougeObj1.LevelUp(1);
                 rougeObj1.Equip(armor2);
-                Console.WriteLine($"TotalPrimaryAttributes, Dexterity: {rougeObj1.TotalPrimaryAttributes.Dexterity}");
-                Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
+                //Console.WriteLine($"TotalPrimaryAttributes, Dexterity: {rougeObj1.TotalPrimaryAttributes.Dexterity}");
+                //Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
                 
                 rougeObj1.Equip(w1);
-                Console.WriteLine($"CharacterDPS: {rougeObj1.GetCharacterDPS()}");
+                //Console.WriteLine($"CharacterDPS: {rougeObj1.CharacterDPS()}");
+                Console.WriteLine(rougeObj1.ToString());
+                
             }
             catch (Exception ex)
             {
