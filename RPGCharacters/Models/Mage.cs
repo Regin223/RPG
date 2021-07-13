@@ -7,7 +7,7 @@ using RPGCharacters.Exceptions;
 
 namespace RPGCharacters.Models
 {
-    class Mage : Hero
+    public class Mage : Hero
     {
         public Mage(string name)
         {
@@ -15,6 +15,7 @@ namespace RPGCharacters.Models
             this.Level = 1;
             this.CharacterDPS = 1;
             this.BasePrimaryAttributes = new PrimaryAttributes { Vitality = 5, Strength = 1, Dexterity = 1, Intelligence = 8 };
+            this.TotalPrimaryAttributes = new PrimaryAttributes { Vitality = 5, Strength = 1, Dexterity = 1, Intelligence = 8 };
             this.SecondarAttributes = new SecondarAttributes 
             {
                 Health = this.BasePrimaryAttributes.Vitality * 10,
@@ -25,74 +26,26 @@ namespace RPGCharacters.Models
 
         public override void Equip(Weapon weapon)
         {
-            if(CheckRequiredLevel(weapon, this.Level))
+            if ((weapon.Type == WeaponType.Staff || weapon.Type == WeaponType.Wand) && CheckRequiredLevel(weapon, this.Level))
             {
-                if (weapon.Type == WeaponType.Staff || weapon.Type == WeaponType.Wand)
-                {
-                    if (weapon.Slot == Slot.Weapon)
-                    {
-                        if (this.Inventory.ContainsKey(weapon.Slot))
-                        {
-                            this.Inventory[weapon.Slot] = weapon;
-                            this.SetCharacterDPS();
-                        }
-                        else
-                        {
-                            this.Inventory.Add(Slot.Weapon, weapon);
-                            this.SetCharacterDPS();
-                        }
-                    }
-                    else
-                    {
-                        throw new InvalidSlotException();
-                    }
-                }
-                else
-                {
-                    throw new InvalidWeaponException();
-                }
+                base.Equip(weapon);
             }
             else
             {
                 throw new InvalidWeaponException();
             }
-            
         }
 
         public override void Equip(Armor armor)
         {
-            if(CheckRequiredLevel(armor, this.Level))
+            if (armor.Type == ArmorType.Cloth && CheckRequiredLevel(armor, this.Level))
             {
-                if (armor.Type == ArmorType.Cloth)
-                {
-                    if (armor.Slot == Slot.Head || armor.Slot == Slot.Body || armor.Slot == Slot.Legs)
-                    {
-                        if (this.Inventory.ContainsKey(armor.Slot))
-                        {
-                            this.Inventory[armor.Slot] = armor;
-                            this.TotalPrimaryAttributes += armor.Armourattributes;
-                        }
-                        else
-                        {
-                            this.Inventory.Add(armor.Slot, armor);
-                            this.TotalPrimaryAttributes += armor.Armourattributes;
-                        }
-                    }
-                    else
-                    {
-                        throw new InvalidSlotException();
-                    }
-                }
-                else
-                {
-                    throw new InvalidArmorException();
-                }
+                base.Equip(armor);
             }
             else
             {
                 throw new InvalidArmorException();
             }
-          
         }
 
         public override double SetCharacterDPS()
@@ -115,12 +68,17 @@ namespace RPGCharacters.Models
         {
             if(levels > 0)
             {
-                this.Level += levels; // add exeeption for adding invalid level
+                this.Level += levels; 
                 this.BasePrimaryAttributes.Vitality += levels * 3;
                 this.BasePrimaryAttributes.Strength += levels * 1;
                 this.BasePrimaryAttributes.Dexterity += levels * 1;
                 this.BasePrimaryAttributes.Intelligence += levels * 5;
-                // add for armor aswell 
+                // for the armor 
+                this.TotalPrimaryAttributes.Vitality += levels * 3;
+                this.TotalPrimaryAttributes.Strength += levels * 1;
+                this.TotalPrimaryAttributes.Dexterity += levels * 1;
+                this.TotalPrimaryAttributes.Intelligence += levels * 5;
+
                 this.SecondarAttributes = new SecondarAttributes
                 {
                     Health = this.BasePrimaryAttributes.Vitality * 10,

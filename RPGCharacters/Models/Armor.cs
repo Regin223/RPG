@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGCharacters.Models
 {
-    class Armor : Item
+    public class Armor : Item
 
     {
         public PrimaryAttributes Armourattributes { get; set; }

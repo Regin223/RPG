@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGCharacters.Models
 {
-    class Weapon : Item
+    public class Weapon : Item
     {
         public WeaponType Type { get; set; }
         

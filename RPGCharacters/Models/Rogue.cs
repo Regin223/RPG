@@ -7,7 +7,7 @@ using RPGCharacters.Exceptions;
 
 namespace RPGCharacters.Models
 {
-    class Rogue : Hero
+    public class Rogue : Hero
     {
         public Rogue(string name)
         {
@@ -27,76 +27,27 @@ namespace RPGCharacters.Models
 
         public override void Equip(Weapon weapon)
         {
-            if (CheckRequiredLevel(weapon, this.Level))
+            if ((weapon.Type == WeaponType.Dagger || weapon.Type == WeaponType.Sword) && CheckRequiredLevel(weapon, this.Level))
             {
-                if ((weapon.Type == WeaponType.Dagger || weapon.Type == WeaponType.Sword) && weapon.RequiredLevel <= this.Level)
-                {
-                    if (weapon.Slot == Slot.Weapon)
-                    {
-                        if (this.Inventory.ContainsKey(weapon.Slot))
-                        {
-                            this.Inventory[weapon.Slot] = weapon;
-                            this.SetCharacterDPS();
-                        }
-                        else
-                        {
-                            this.Inventory.Add(Slot.Weapon, weapon);
-                            this.SetCharacterDPS();
-                        }
-                    }
-                    else
-                    {
-                        throw new InvalidSlotException();
-                    }
-                }
-                else
-                {
-                    throw new InvalidWeaponException();
-                }
+                base.Equip(weapon);
             }
             else
             {
                 throw new InvalidWeaponException();
             }
-            
-           
+    
         }
 
         public override void Equip(Armor armor)
         {
-            if(CheckRequiredLevel(armor, this.Level))
-            {
-                if (armor.Type == ArmorType.Leather || armor.Type == ArmorType.Mail)
+                if ((armor.Type == ArmorType.Leather || armor.Type == ArmorType.Mail) && CheckRequiredLevel(armor, this.Level))
                 {
-                    if (armor.Slot == Slot.Head || armor.Slot == Slot.Body || armor.Slot == Slot.Legs)
-                    {
-                        if (this.Inventory.ContainsKey(armor.Slot))
-                        {
-                            this.Inventory[armor.Slot] = armor;
-                            this.TotalPrimaryAttributes += armor.Armourattributes;
-                        }
-                        else
-                        {
-                            this.Inventory.Add(armor.Slot, armor);
-                            this.TotalPrimaryAttributes += armor.Armourattributes;
-                        }
-
-                    }
-                    else
-                    {
-                        throw new InvalidSlotException();
-                    }
+                    base.Equip(armor);
                 }
                 else
                 {
                     throw new InvalidArmorException();
                 }
-            }
-            else
-            {
-                throw new InvalidArmorException();
-            }
-           
         }
 
         public override double SetCharacterDPS()
@@ -126,11 +77,16 @@ namespace RPGCharacters.Models
                 this.BasePrimaryAttributes.Dexterity += levels * 4;
                 this.BasePrimaryAttributes.Intelligence += levels * 1;
                 // add for armor aswell 
+                this.TotalPrimaryAttributes.Vitality += levels * 3;
+                this.TotalPrimaryAttributes.Strength += levels * 1;
+                this.TotalPrimaryAttributes.Dexterity += levels * 4;
+                this.TotalPrimaryAttributes.Intelligence += levels * 1;
+
                 this.SecondarAttributes = new SecondarAttributes
                 {
                     Health = this.BasePrimaryAttributes.Vitality * 10,
                     ArmorRating = this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity,
-                    ElementalResistance = this.BasePrimaryAttributes.Intelligence
+                    ElementalResistance = this.TotalPrimaryAttributes.Intelligence
                 };
 
             }

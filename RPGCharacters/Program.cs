@@ -10,6 +10,8 @@ namespace RPGCharacters
         static void Main(string[] args)
         {
             Mage mageObj1 = new Mage("Mage1");
+            mageObj1.LevelUp(1);
+            Console.WriteLine(mageObj1.Level);
             
 
             //Console.WriteLine(mageObj1.BasePrimaryAttributes.Vitality);
@@ -30,51 +32,51 @@ namespace RPGCharacters
             //var foo3 = (Weapon)mageObj1.Inventory[Slot.Weapon];
             //Console.WriteLine(foo3.Type);
             
-            try
-            {
-                Console.WriteLine("-------Rogue------");
-                Rogue rougeObj1 = new Rogue("Rogue1");
-                Console.WriteLine(rougeObj1.BasePrimaryAttributes.Vitality);
-                Console.WriteLine(rougeObj1.SecondarAttributes.ArmorRating);
+            //try
+            //{
+            //    Console.WriteLine("-------Rogue------");
+            //    Rogue rougeObj1 = new Rogue("Rogue1");
+            //    Console.WriteLine(rougeObj1.BasePrimaryAttributes.Vitality);
+            //    Console.WriteLine(rougeObj1.SecondarAttributes.ArmorRating);
                 
-                Console.WriteLine("-------------");
-                Console.WriteLine($"TotalPrimaryAttributes, Dexterity: {rougeObj1.TotalPrimaryAttributes.Dexterity}");
-                Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
-                Console.WriteLine(rougeObj1.SecondarAttributes.ArmorRating);
+            //    Console.WriteLine("-------------");
+            //    Console.WriteLine($"TotalPrimaryAttributes, Dexterity: {rougeObj1.TotalPrimaryAttributes.Dexterity}");
+            //    Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
+            //    Console.WriteLine(rougeObj1.SecondarAttributes.ArmorRating);
 
-                Weapon w1 = new Weapon
-                {
-                    Name = "Big Sword",
-                    RequiredLevel = 1,
-                    Slot = Slot.Weapon,
-                    Type = WeaponType.Sword,
-                    WeaponAttributes = new WeaponAttributes { Damage = 3, AttackSpeed = 3 }
-                };
-                Console.WriteLine($"WeaponType: {w1.Type},Name: {w1.Name}, Damage: {w1.WeaponAttributes.Damage}");
+            //    Weapon w1 = new Weapon
+            //    {
+            //        Name = "Big Sword",
+            //        RequiredLevel = 1,
+            //        Slot = Slot.Weapon,
+            //        Type = WeaponType.Sword,
+            //        WeaponAttributes = new WeaponAttributes { Damage = 2, AttackSpeed = 1 }
+            //    };
+            //    Console.WriteLine($"WeaponType: {w1.Type},Name: {w1.Name}, Damage: {w1.WeaponAttributes.Damage}");
 
-                Armor armor2 = new Armor
-                {
-                    Name = "Mail body",
-                    RequiredLevel = 1,
-                    Slot = Slot.Body,
-                    Type = ArmorType.Mail,
-                    Armourattributes = new PrimaryAttributes { Dexterity = 4, Intelligence = 2 }
-                };
-                Console.WriteLine(rougeObj1.ToString());
-                rougeObj1.LevelUp(1);
-                rougeObj1.Equip(armor2);
-                //Console.WriteLine($"TotalPrimaryAttributes, Dexterity: {rougeObj1.TotalPrimaryAttributes.Dexterity}");
-                //Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
+            //    Armor armor2 = new Armor
+            //    {
+            //        Name = "Mail body",
+            //        RequiredLevel = 1,
+            //        Slot = Slot.Body,
+            //        Type = ArmorType.Mail,
+            //        Armourattributes = new PrimaryAttributes { Dexterity = 1, Intelligence = 4 }
+            //    };
+            //    Console.WriteLine(rougeObj1.ToString());
+            //    rougeObj1.LevelUp(1);
+            //    rougeObj1.Equip(armor2);
+            //    //Console.WriteLine($"TotalPrimaryAttributes, Dexterity: {rougeObj1.TotalPrimaryAttributes.Dexterity}");
+            //    //Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
                 
-                rougeObj1.Equip(w1);
-                //Console.WriteLine($"CharacterDPS: {rougeObj1.CharacterDPS()}");
-                Console.WriteLine(rougeObj1.ToString());
+            //    rougeObj1.Equip(w1);
+            //    //Console.WriteLine($"CharacterDPS: {rougeObj1.CharacterDPS()}");
+            //    Console.WriteLine(rougeObj1.ToString());
                 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception Message: " + ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Exception Message: " + ex.Message);
+            //}
            
 
             //Armor armor1 = new Armor

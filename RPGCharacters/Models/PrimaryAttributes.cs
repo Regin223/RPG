@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGCharacters.Models
 {
-    class PrimaryAttributes
+    public class PrimaryAttributes
     {
         public static PrimaryAttributes operator +(PrimaryAttributes lhs, PrimaryAttributes rhs)
         {
