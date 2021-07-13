@@ -12,5 +12,9 @@ namespace RPGCharacters.Models
         
         public WeaponAttributes WeaponAttributes { get; set; }
 
+        public double GetWeaponDPS()
+        {
+            return WeaponAttributes.Damage * WeaponAttributes.AttackSpeed;
+        }
     }
 }

@@ -18,10 +18,10 @@ namespace RPGCharacters.Models
                 ElementalResistance = one.ElementalResistance + two.ElementalResistance
             };
         }
-        public int Health { get; set; }
+        public double Health { get; set; }
 
-        public int ArmorRating { get; set; }
+        public double ArmorRating { get; set; }
 
-        public int ElementalResistance { get; set; }
+        public double ElementalResistance { get; set; }
     }
 }

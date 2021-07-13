@@ -48,7 +48,7 @@ namespace RPGCharacters
                     RequiredLevel = 1,
                     Slot = Slot.Weapon,
                     Type = WeaponType.Sword,
-                    WeaponAttributes = new WeaponAttributes { Damage = 3, AttackSpeed = 0.7 }
+                    WeaponAttributes = new WeaponAttributes { Damage = 3, AttackSpeed = 3 }
                 };
                 Console.WriteLine($"WeaponType: {w1.Type},Name: {w1.Name}, Damage: {w1.WeaponAttributes.Damage}");
 
@@ -65,6 +65,7 @@ namespace RPGCharacters
                 Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
                 
                 rougeObj1.Equip(w1);
+                Console.WriteLine($"CharacterDPS: {rougeObj1.GetCharacterDPS()}");
             }
             catch (Exception ex)
             {

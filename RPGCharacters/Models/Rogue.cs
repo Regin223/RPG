@@ -96,6 +96,22 @@ namespace RPGCharacters.Models
            
         }
 
+        public override double GetCharacterDPS()
+        {
+            double characterDPS;
+            if (this.Inventory.ContainsKey(Slot.Weapon))
+            {
+                Weapon weapon = (Weapon)this.Inventory[Slot.Weapon];
+                double additionalDamage = 1 + (double)(this.TotalPrimaryAttributes.Dexterity / 100);
+                characterDPS = weapon.GetWeaponDPS() * additionalDamage;
+                return characterDPS;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
         public override void LevelUp(int levels)
         {
             if (levels > 0)

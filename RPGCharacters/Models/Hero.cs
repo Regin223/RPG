@@ -35,7 +35,9 @@ namespace RPGCharacters.Models
 
         public abstract void Equip(Armor armor);
 
-       
+        public abstract double GetCharacterDPS();
+
+
 
     }
 }

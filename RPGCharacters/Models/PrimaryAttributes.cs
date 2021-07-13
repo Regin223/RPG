@@ -18,12 +18,12 @@ namespace RPGCharacters.Models
                 Vitality = lhs.Vitality + rhs.Vitality
             };
         }
-        public int Strength { get; set; }
+        public double Strength { get; set; }
 
-        public int Dexterity { get; set; }
+        public double Dexterity { get; set; }
 
-        public int Intelligence { get; set; }
+        public double Intelligence { get; set; }
 
-        public int Vitality { get; set; }
+        public double Vitality { get; set; }
     }
 }
