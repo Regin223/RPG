@@ -13,9 +13,9 @@ namespace RPGCharacters.Models
         {
             this.Name = name;
             this.Level = 1;
-            this.BasePrimaryAttributes = new PrimaryAttributes { Vitality = 5, Strength = 1, Dexterity = 1, Intelligence = 8 };
-            this.TotalPrimaryAttributes = new PrimaryAttributes { Vitality = 5, Strength = 1, Dexterity = 1, Intelligence = 8 };
-            this.CharacterDPS = this.SetCharacterDPS();
+            this.BasePrimaryAttributes = SetDefaultAttributes();
+            this.TotalPrimaryAttributes = SetDefaultAttributes();
+            this.CharacterDPS = this.GetCharacterDPS();
             this.SecondarAttributes = new SecondarAttributes 
             {
                 Health = this.BasePrimaryAttributes.Vitality * 10,
@@ -24,12 +24,17 @@ namespace RPGCharacters.Models
             };
         }
 
+        private PrimaryAttributes SetDefaultAttributes()
+        {
+            return new PrimaryAttributes { Vitality = 5, Strength = 1, Dexterity = 1, Intelligence = 8 };
+        }
+
         public override string Equip(Weapon weapon)
         {
             if ((weapon.Type == WeaponType.Staff || weapon.Type == WeaponType.Wand) && CheckRequiredLevel(weapon, this.Level))
             {
                 string returnString = base.Equip(weapon);
-                this.CharacterDPS = this.SetCharacterDPS();
+                this.CharacterDPS = this.GetCharacterDPS();
                 return returnString;
             }
             else
@@ -43,9 +48,8 @@ namespace RPGCharacters.Models
             if (armor.Type == ArmorType.Cloth && CheckRequiredLevel(armor, this.Level))
             {
                 string returnString = base.Equip(armor);
-                // update seondary
                 this.SecondarAttributes = UpdateSecondaryAttributes();
-                this.CharacterDPS = this.SetCharacterDPS();
+                this.CharacterDPS = this.GetCharacterDPS();
                 return returnString;
             }
             else
@@ -54,7 +58,7 @@ namespace RPGCharacters.Models
             }
         }
 
-        public override double SetCharacterDPS()
+        public override double GetCharacterDPS()
         {
             double characterDPS;
             if (this.Inventory.ContainsKey(Slot.Weapon))
@@ -70,7 +74,7 @@ namespace RPGCharacters.Models
                 return characterDPS;
             }
         }
-
+      
         public override void LevelUp(int levels)
         {
             if(levels > 0)
@@ -95,7 +99,7 @@ namespace RPGCharacters.Models
            
              
         }
-        public SecondarAttributes UpdateSecondaryAttributes()
+        private SecondarAttributes UpdateSecondaryAttributes()
         {
             return new SecondarAttributes
             {
