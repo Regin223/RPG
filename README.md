@@ -1,2 +1,5 @@
-# Backend
+# Experis Assignment 1
+This project is a console application in C#. The program should be able to create four different characters(Mage, Ranger, Rouge, Warrior). Each character has primary attributes(Strength,Dexterity,Intelligence,Vitality), the value for the primary attributes are different for the different characters. The characters does also have secondary attributes(Health,Armor rating, Elemental resistance). The characters should be able to level up and then the attributes should be updated, how much the attributes gets updated depends on which character it is. The characters should also be able to pick up weapon and armor, so it is possible to create armor and weapons as well. The weapons and amrors should be stored in an inventory. Each character has one inventory. When a character is equiping a weapon or an armor, the attributes for the character should be updated. 
+
+The main function for the program is creating a character that can equip armor and weapons and then the different attributes for the character should be updated. There is a toString method to display all the stats for the character. 
 
