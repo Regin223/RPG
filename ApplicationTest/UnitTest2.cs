@@ -111,7 +111,7 @@ namespace ApplicationTest
         [Fact]
         public void CheckDPS_ValidDpsInLevel1_ValidDps()
         {
-            double expectedDps = 1 * (1 + (5 / 100));
+            double expectedDps = 1 * (1 + (5.0 / 100));
             Warrior warrior = new Warrior("Warrior");
             double actualDps = warrior.CharacterDPS;
 

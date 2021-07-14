@@ -13,9 +13,9 @@ namespace RPGCharacters.Models
         {
             this.Name = name;
             this.Level = 1;
+            this.BasePrimaryAttributes = SetPrimaryAttributes();
+            this.TotalPrimaryAttributes = SetPrimaryAttributes();
             this.CharacterDPS = SetCharacterDPS();
-            this.BasePrimaryAttributes = new PrimaryAttributes { Vitality = 8, Strength = 2, Dexterity = 6, Intelligence = 1 };
-            this.TotalPrimaryAttributes = new PrimaryAttributes { Vitality = 8, Strength = 2, Dexterity = 6, Intelligence = 1 };
 
             this.SecondarAttributes = new SecondarAttributes
             {
@@ -23,6 +23,11 @@ namespace RPGCharacters.Models
                 ArmorRating = this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity,
                 ElementalResistance = this.BasePrimaryAttributes.Intelligence,
             };
+        }
+
+        private PrimaryAttributes SetPrimaryAttributes()
+        {
+            return new PrimaryAttributes { Vitality = 8, Strength = 2, Dexterity = 6, Intelligence = 1 };
         }
 
         public override string Equip(Weapon weapon)

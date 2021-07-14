@@ -13,15 +13,21 @@ namespace RPGCharacters.Models
         {
             this.Name = name;
             this.Level = 1;
-            this.CharacterDPS = 1;
-            this.BasePrimaryAttributes = new PrimaryAttributes { Vitality = 10, Strength = 5, Dexterity = 2, Intelligence = 1 };
-            this.TotalPrimaryAttributes = new PrimaryAttributes { Vitality = 10, Strength = 5, Dexterity = 2, Intelligence = 1 };
+            
+            this.BasePrimaryAttributes = SetDefaultAttributes();
+            this.TotalPrimaryAttributes = SetDefaultAttributes();
+            this.CharacterDPS = this.SetCharacterDPS();
             this.SecondarAttributes = new SecondarAttributes
             {
                 Health = this.BasePrimaryAttributes.Vitality * 10,
                 ArmorRating = this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity,
                 ElementalResistance = this.BasePrimaryAttributes.Intelligence,
             };
+        }
+
+        private PrimaryAttributes SetDefaultAttributes()
+        {
+            return new PrimaryAttributes { Vitality = 10, Strength = 5, Dexterity = 2, Intelligence = 1 };
         }
 
         public override string Equip(Weapon weapon)
