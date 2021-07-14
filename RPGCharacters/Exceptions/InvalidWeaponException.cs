@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGCharacters.Exceptions
 {
-    class InvalidWeaponException : Exception
+    public class InvalidWeaponException : Exception
     {
         public override string Message => "Not a valid weapon for this hero";
     }

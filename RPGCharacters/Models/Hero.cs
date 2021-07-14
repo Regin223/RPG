@@ -39,19 +39,21 @@ namespace RPGCharacters.Models
 
         public abstract void LevelUp(int levels);
 
-        public virtual void Equip(Weapon weapon) 
+        public virtual string Equip(Weapon weapon) 
         {
             if (weapon.Slot == Slot.Weapon)
             {
                 if (this.Inventory.ContainsKey(weapon.Slot))
                 {
                     this.Inventory[weapon.Slot] = weapon;
-                    this.SetCharacterDPS();
+                    this.CharacterDPS = this.SetCharacterDPS();
+                    return "New weapon equipped!";
                 }
                 else
                 {
                     this.Inventory.Add(Slot.Weapon, weapon);
-                    this.SetCharacterDPS();
+                    this.CharacterDPS = this.SetCharacterDPS();
+                    return "New weapon equipped!";
                 }
             }
             else
@@ -60,7 +62,7 @@ namespace RPGCharacters.Models
             }
         }
 
-        public virtual void Equip(Armor armor)
+        public virtual string Equip(Armor armor)
         {
             if (armor.Slot == Slot.Head || armor.Slot == Slot.Body || armor.Slot == Slot.Legs)
             {
@@ -68,12 +70,15 @@ namespace RPGCharacters.Models
                 {
                     this.Inventory[armor.Slot] = armor;
                     this.TotalPrimaryAttributes += armor.Armourattributes;
-                    //update secondary attributes
+                    
+                    return "New armour equipped!";
                 }
                 else
                 {
                     this.Inventory.Add(armor.Slot, armor);
                     this.TotalPrimaryAttributes += armor.Armourattributes;
+
+                    return "New armour equipped!";
                 }
 
             }

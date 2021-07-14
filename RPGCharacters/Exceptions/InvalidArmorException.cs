@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGCharacters.Exceptions
 {
-    class InvalidArmorException : Exception
+    public class InvalidArmorException : Exception
     {
         public override string Message => "Not valid armor for this hero";
     }

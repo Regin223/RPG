@@ -24,11 +24,13 @@ namespace RPGCharacters.Models
             };
         }
 
-        public override void Equip(Weapon weapon)
+        public override string Equip(Weapon weapon)
         {
             if ((weapon.Type == WeaponType.Axe || weapon.Type == WeaponType.Hammer || weapon.Type == WeaponType.Sword) && CheckRequiredLevel(weapon, this.Level))
             {
-                base.Equip(weapon);
+                string returnString = base.Equip(weapon);
+                this.CharacterDPS = this.SetCharacterDPS();
+                return returnString;
             }
             else
             {
@@ -36,11 +38,14 @@ namespace RPGCharacters.Models
             }
         }
 
-        public override void Equip(Armor armor)
+        public override string Equip(Armor armor)
         {
             if ((armor.Type == ArmorType.Mail || armor.Type == ArmorType.Plate) && CheckRequiredLevel(armor, this.Level))
             {
-                base.Equip(armor);
+                string returnString = base.Equip(armor);
+                this.SecondarAttributes = UpdateSecondaryAttributes();
+                this.CharacterDPS = this.SetCharacterDPS();
+                return returnString;
             }
             else
             {
@@ -60,7 +65,8 @@ namespace RPGCharacters.Models
             }
             else
             {
-                return 1;
+                characterDPS = 1 * (1 + this.TotalPrimaryAttributes.Strength / 100);
+                return characterDPS;
             }
         }
 
@@ -79,18 +85,22 @@ namespace RPGCharacters.Models
                 this.TotalPrimaryAttributes.Dexterity += levels * 2;
                 this.TotalPrimaryAttributes.Intelligence += levels * 1;
 
-                this.SecondarAttributes = new SecondarAttributes
-                {
-                    Health = this.BasePrimaryAttributes.Vitality * 10,
-                    ArmorRating = this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity,
-                    ElementalResistance = this.BasePrimaryAttributes.Intelligence
-                };
+                this.SecondarAttributes = UpdateSecondaryAttributes();
             }
             else
             {
                 throw new ArgumentException();
             }
           
+        }
+        public SecondarAttributes UpdateSecondaryAttributes()
+        {
+            return new SecondarAttributes
+            {
+                Health = this.TotalPrimaryAttributes.Vitality * 10,
+                ArmorRating = this.TotalPrimaryAttributes.Strength + this.TotalPrimaryAttributes.Dexterity,
+                ElementalResistance = this.TotalPrimaryAttributes.Intelligence,
+            };
         }
     }
 }

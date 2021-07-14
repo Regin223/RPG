@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGCharacters.Exceptions
 {
-    class InvalidSlotException : Exception
+    public class InvalidSlotException : Exception
     {
         public override string Message => "Not vaild slot for this item";
     }

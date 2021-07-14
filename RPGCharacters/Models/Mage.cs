@@ -13,9 +13,9 @@ namespace RPGCharacters.Models
         {
             this.Name = name;
             this.Level = 1;
-            this.CharacterDPS = 1;
             this.BasePrimaryAttributes = new PrimaryAttributes { Vitality = 5, Strength = 1, Dexterity = 1, Intelligence = 8 };
             this.TotalPrimaryAttributes = new PrimaryAttributes { Vitality = 5, Strength = 1, Dexterity = 1, Intelligence = 8 };
+            this.CharacterDPS = this.SetCharacterDPS();
             this.SecondarAttributes = new SecondarAttributes 
             {
                 Health = this.BasePrimaryAttributes.Vitality * 10,
@@ -24,11 +24,13 @@ namespace RPGCharacters.Models
             };
         }
 
-        public override void Equip(Weapon weapon)
+        public override string Equip(Weapon weapon)
         {
             if ((weapon.Type == WeaponType.Staff || weapon.Type == WeaponType.Wand) && CheckRequiredLevel(weapon, this.Level))
             {
-                base.Equip(weapon);
+                string returnString = base.Equip(weapon);
+                this.CharacterDPS = this.SetCharacterDPS();
+                return returnString;
             }
             else
             {
@@ -36,11 +38,15 @@ namespace RPGCharacters.Models
             }
         }
 
-        public override void Equip(Armor armor)
+        public override string Equip(Armor armor)
         {
             if (armor.Type == ArmorType.Cloth && CheckRequiredLevel(armor, this.Level))
             {
-                base.Equip(armor);
+                string returnString = base.Equip(armor);
+                // update seondary
+                this.SecondarAttributes = UpdateSecondaryAttributes();
+                this.CharacterDPS = this.SetCharacterDPS();
+                return returnString;
             }
             else
             {
@@ -60,7 +66,8 @@ namespace RPGCharacters.Models
             }
             else
             {
-                return 1;
+                characterDPS = 1 * (1 + this.TotalPrimaryAttributes.Intelligence / 100);
+                return characterDPS;
             }
         }
 
@@ -79,12 +86,7 @@ namespace RPGCharacters.Models
                 this.TotalPrimaryAttributes.Dexterity += levels * 1;
                 this.TotalPrimaryAttributes.Intelligence += levels * 5;
 
-                this.SecondarAttributes = new SecondarAttributes
-                {
-                    Health = this.BasePrimaryAttributes.Vitality * 10,
-                    ArmorRating = this.BasePrimaryAttributes.Strength + this.BasePrimaryAttributes.Dexterity,
-                    ElementalResistance = this.BasePrimaryAttributes.Intelligence,
-                };
+                this.SecondarAttributes = UpdateSecondaryAttributes();
             }
             else
             {
@@ -93,6 +95,15 @@ namespace RPGCharacters.Models
            
              
         }
+        public SecondarAttributes UpdateSecondaryAttributes()
+        {
+            return new SecondarAttributes
+            {
+                Health = this.TotalPrimaryAttributes.Vitality * 10,
+                ArmorRating = this.TotalPrimaryAttributes.Strength + this.TotalPrimaryAttributes.Dexterity,
+                ElementalResistance = this.TotalPrimaryAttributes.Intelligence,
+            };
+        } 
     
         
 

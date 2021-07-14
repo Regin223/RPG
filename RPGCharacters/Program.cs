@@ -9,10 +9,47 @@ namespace RPGCharacters
     {
         static void Main(string[] args)
         {
-            Mage mageObj1 = new Mage("Mage1");
-            mageObj1.LevelUp(1);
-            Console.WriteLine(mageObj1.Level);
-            
+
+            Warrior warrior = new Warrior("Warrior");
+            Weapon testAxe = new Weapon()
+            {
+                Name = "Common axe",
+                RequiredLevel = 1,
+                Slot = Slot.Weapon,
+                Type = WeaponType.Axe,
+                WeaponAttributes = new WeaponAttributes() { Damage = 7, AttackSpeed = 1.1 }
+            };
+            warrior.Equip(testAxe);
+
+            double actualDps = warrior.CharacterDPS;
+
+
+
+            //Mage mageObj1 = new Mage("Mage1");
+            ////mageObj1.LevelUp(1);
+            //Console.WriteLine(mageObj1.Level);
+            //Weapon w3 = new Weapon
+            //{
+            //    Name = "Wannding wand",
+            //    RequiredLevel = 1,
+            //    Slot = Slot.Weapon,
+            //    Type = WeaponType.Wand,
+            //    WeaponAttributes = new WeaponAttributes { Damage = 3, AttackSpeed = 2 }
+            //};
+            //Armor armor = new Armor
+            //{
+            //    Name = "a1",
+            //    RequiredLevel = 1,
+            //    Slot = Slot.Body,
+            //    Type = ArmorType.Cloth,
+            //    Armourattributes = new PrimaryAttributes { Vitality = 5 },
+            //};
+            //Console.WriteLine(mageObj1.ToString());
+            //string message = mageObj1.Equip(w3);
+            //Console.WriteLine(message);
+
+            //mageObj1.Equip(armor);
+            //Console.WriteLine(mageObj1.ToString());
 
             //Console.WriteLine(mageObj1.BasePrimaryAttributes.Vitality);
             //Console.WriteLine(mageObj1.SecondarAttributes.ArmorRating);
@@ -31,14 +68,14 @@ namespace RPGCharacters
             //mageObj1.Equip(w3);
             //var foo3 = (Weapon)mageObj1.Inventory[Slot.Weapon];
             //Console.WriteLine(foo3.Type);
-            
+
             //try
             //{
             //    Console.WriteLine("-------Rogue------");
             //    Rogue rougeObj1 = new Rogue("Rogue1");
             //    Console.WriteLine(rougeObj1.BasePrimaryAttributes.Vitality);
             //    Console.WriteLine(rougeObj1.SecondarAttributes.ArmorRating);
-                
+
             //    Console.WriteLine("-------------");
             //    Console.WriteLine($"TotalPrimaryAttributes, Dexterity: {rougeObj1.TotalPrimaryAttributes.Dexterity}");
             //    Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
@@ -67,17 +104,17 @@ namespace RPGCharacters
             //    rougeObj1.Equip(armor2);
             //    //Console.WriteLine($"TotalPrimaryAttributes, Dexterity: {rougeObj1.TotalPrimaryAttributes.Dexterity}");
             //    //Console.WriteLine($"TotalPrimaryAttributes, Intelligence: {rougeObj1.TotalPrimaryAttributes.Intelligence}");
-                
+
             //    rougeObj1.Equip(w1);
             //    //Console.WriteLine($"CharacterDPS: {rougeObj1.CharacterDPS()}");
             //    Console.WriteLine(rougeObj1.ToString());
-                
+
             //}
             //catch (Exception ex)
             //{
             //    Console.WriteLine("Exception Message: " + ex.Message);
             //}
-           
+
 
             //Armor armor1 = new Armor
             //{
@@ -88,17 +125,17 @@ namespace RPGCharacters
             //    Armourattributes = new PrimaryAttributes { Dexterity = 2, Intelligence= 1}
             //};
             //Console.WriteLine($"armor: {armor1.Slot}");
-          
+
             //Console.WriteLine($"armor1: {armor1.Name}");
             //rougeObj1.Equip(armor1);
             //Console.WriteLine(rougeObj1.Inventory[Slot.Body].Name);
-           
+
             //Console.WriteLine($"armor2: {rougeObj1.Inventory[Slot.Body].Name}");
 
-           
 
-       
-            
+
+
+
             //var foo2 = (Weapon)rougeObj1.Inventory[Slot.Weapon];
             //Console.WriteLine($"foo2: {foo2.Type}");
 
@@ -122,10 +159,10 @@ namespace RPGCharacters
             //warriorObj1.Equip(w2);
             //var foo4 = (Weapon)warriorObj1.Inventory[Slot.Weapon];
             //Console.WriteLine(foo4.WeaponAttributes.AttackSpeed);
-            
+
 
 
 
         }
-    }
+        }
 }
